@@ -1,0 +1,4 @@
+appName: "prod-deploy"
+envName: "prod"
+configMapName: "prod"
+configKey: "BACKEND_URL"

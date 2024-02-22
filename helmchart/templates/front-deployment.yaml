@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: {{ .Values.appName }}
+  name: {{ .Values.appName }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: {{ .Values.appName }}
+    spec:
+      containers:
+      - image: jenne09/challenge-e06-front:v2
+        env:
+        - name: {{ .Values.envName }}
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Values.configMapName }}
+              key: {{ .Values.configKey }}
+        - name: {{ .Values.envName }}
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Values.configMapName }}
+              key: {{ .Values.configKey }}
+        name: challenge-front
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 50m
+            memory: 16Mi
+          limits:
+            cpu: 80m
+            memory: 32Mi
+status: {}

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/instance: e06-jenne-app
+  name: dev
+data:
+  BACKEND_URL: "http://back.jenne.svc.cluster.local:5001/racontemoiunehistoire"

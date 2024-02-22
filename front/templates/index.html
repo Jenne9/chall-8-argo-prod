@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Père Castor, Raconte nous une histoire</title>
+    <style>
+      /* Style pour le body */
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #f2f2f2; /* Couleur de fond */
+      }
+
+      /* Style pour le titre */
+      h1 {
+          text-align: center;
+          color: #333; /* Couleur du texte */
+          margin-top: 50px; /* Marge en haut */
+      }
+
+      /* Style pour le bouton */
+      button {
+          display: block;
+          margin: 0 auto;
+          padding: 10px 20px;
+          background-color: #ffb700; /* Couleur de fond */
+          color: #000; /* Couleur du texte */
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+      }
+
+      /* Style pour le paragraphe */
+      p {
+          text-align: center;
+          margin-top: 20px;
+          color: #555; /* Couleur du texte */
+      }
+
+      /* Style pour l'image */
+      #perecastor {
+          display: block;
+          margin: 20px auto;
+          width: 200px; /* Largeur de l'image */
+          height: auto; /* Hauteur ajustée automatiquement */
+      }
+  </style>
+    
+  </head>
+  <body>
+    <h1>Père Castor, Raconte nous une histoire</h1>
+    <img src="perecastor.png" alt="" id="perecastor" />
+    <button onclick="recupererHistoire()">Une histoire ! Une histoire !</button>
+    <p id="histoire"></p>
+    <p>{{ my_os }}</p>
+    <script>
+      function recupererHistoire() {
+            fetch('/goapi')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur lors de la récupération de l\'histoire');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById("histoire").innerText = data.histoire;
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+            });
+        }
+    </script>
+  </body>
+</html>

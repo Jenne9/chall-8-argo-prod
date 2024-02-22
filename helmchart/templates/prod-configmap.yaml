@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/instance: e06-jenne-app
+  name: prod
+data:
+  MY_OS: "MacOS Sonoma 14.1.2"
+  
