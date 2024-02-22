@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jenne-app-prod
+  namespace: mathieu-argo
+spec:
+  project: jenne-app-prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: jenne
+  sources:
+    - repoURL: "git@github.com:O-clock-Hati/challenge-s15-e08-Jenne9.git"
+      chart: helmchart
+      helm:
+        valueFiles:
+          - $values/values.yaml
+    - repoURL: "git@github.com:Jenne9/chall-8-argo-prod.git"
+      targetRevision: prod
+      ref: values
